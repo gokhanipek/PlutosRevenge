@@ -64,66 +64,120 @@
         width: 20px;
         height: 20px;
         border-radius: 100%;
-        background: red;
+        background-image: url('./../../assets/images/mercury.jpeg');
+        background-size: cover ;
+        animation-name: spin;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;    
     }
 
     .venus {
         width: 30px;
         height: 30px;
         border-radius: 100%;
-        background: blue;
+        background-image: url('./../../assets/images/venus2.jpeg');
+        background-size: cover ;
+        animation-name: spin;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;    
     }
 
     .earth {
         width: 40px;
         height: 40px;
         border-radius: 100%;
-        background: green;
+        background-image: url('./../../assets/images/earth.jpeg');
+        background-size: cover ;
+        animation-name: spin;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;    
     }
 
     .mars {
         width: 46px;
         height: 46px;
         border-radius: 100%;
-        background: crimson;
+        background-image: url('./../../assets/images/mars.jpeg');
+        background-size: cover ;
+        animation-name: spin;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;    
     }
 
     .jupiter {
         width: 90px;
         height: 90px;
         border-radius: 100%;
-        background: beige;
+        background-image: url('./../../assets/images/jupiter.jpeg');
+        background-size: cover ;
+        animation-name: spin;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;    
     }
 
     .saturnus {
         width: 80px;
         height: 80px;
         border-radius: 100%;
-        background: brown;
+        background-image: url('./../../assets/images/saturn.jpeg');
+        background-size: cover ;
+        animation-name: spin;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;    
     }
 
     .uranus {
         width: 75px;
         height: 75px;
         border-radius: 100%;
-        background: lightseagreen;
+        background-image: url('./../../assets/images/uranus.jpeg');
+        background-size: cover ;
+        animation-name: spin;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;    
     }
 
     .neptune {
         width: 60px;
         height: 60px;
         border-radius: 100%;
-        background: darkslateblue;
+        background-image: url('./../../assets/images/neptune.jpeg');
+        background-size: cover ;
+        animation-name: spin;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;    
     }
 
     .pluto {
         width: 5px;
         height: 5px;
         border-radius: 100%;
-        background: lightskyblue;
+        background-image: url('./../../assets/images/pluto.jpeg');
+        background-size: cover ;
+        animation-name: spin;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;    
         border: 1px solid transparent;
         &:hover {
             transform: scale(1.2);
         }
+    }
+}
+
+@keyframes spin{
+    0%{
+        background-position: -100%;
+    }
+    100%{
+        background-position: 100%;
     }
 }
