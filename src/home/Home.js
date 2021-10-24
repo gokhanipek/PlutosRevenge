@@ -1,9 +1,11 @@
 import React from 'react'
 
-export const Pluto = () => {
+const Home = () => {
     return (
         <div>
-            
+            Welcome  
         </div>
     )
 }
+
+export default Home
