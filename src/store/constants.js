@@ -24,6 +24,32 @@ export const SATURN = "SATURN";
 export const URANUS = "URANUS";
 export const NEPTUNE = "NEPTUNE";
 export const PLUTO = "PLUTO";
+export const SET_AWARD = "SET_AWARD";
+export const SET_PLUTO_STATUS = "SET_PLUTO_STATUS";
+export const SET_AVAILABLE_ATTACKS = "SET_AVAILABLE_ATTACKS";
+
+export const defaultAttackAwards = [
+    {
+        name: 'Acid',
+        type: POISON,
+        damage: 50
+    },
+    {
+        name: 'Punisher',
+        type: FIGHTING,
+        damage: 70
+    },
+    {
+        name: 'Hyper Beam',
+        type: FIRE,
+        damage: 85
+    },
+    {
+        name: 'Soul Breeze',
+        type: ICE,
+        damage: 100
+    }
+] 
 
 
 export const PLANETS = [
@@ -263,7 +289,7 @@ export const PLANETS = [
                     damage: 10
                 },
                 {
-                    name: 'Planet F-ing SLAYER',
+                    name: 'F***ing SLAYER! \\m/',
                     type: FIGHTING,
                     damage: 40
                 },
@@ -409,9 +435,9 @@ export const PLANETS = [
             defenseResistance: 0,
             attacks: [
                 {
-                    name: 'Imagination',
-                    type: STATUS,
-                    damage: 0
+                    name: 'Comet Punch',
+                    type: FIGHTING,
+                    damage: 10
                 }
             ],
             background: 'One of the cutest but also pissed creatures in the solar system and probably the whole universe. Around 10 years ago when she found out about dark businesses Earth got into, she dumped Earth and PASA(Pluto Annoyers and Space Administration, NASA literally changed their name to that.) of Earth decided to change Plutos status from a Planet to NOT a planet. This and also being far far far away from rest of the guys made her a lonely, sad, broken thing. She think to himself: What am I, Im not even a planet, what is there to live for? And she started drinking heavily, built an addiction for drinking and betting. Alone. Also being away from all the warmth of Sun, she become sick, sneezes constantly. After Sun announced he is losing his power to give warmth and will retire, she has only and ONLY purpose in this life. She will confront Earth and show it in his face.', 

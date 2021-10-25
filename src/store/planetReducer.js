@@ -1,7 +1,8 @@
-import { PLANETS, SET_PLANET } from "./constants";
+import { PLANETS, SET_PLANET, SET_PLUTO_STATUS } from "./constants";
 
 const initialState = {
-    planets: PLANETS
+    planets: PLANETS,
+    plutoStatus: PLANETS[8]
 };
 
 const planetsReducer = (state = initialState, action ) => {
@@ -11,6 +12,11 @@ const planetsReducer = (state = initialState, action ) => {
       return {
         ...state,
         selectedPlanet: action.payload
+      }
+    case SET_PLUTO_STATUS:
+      return {
+        ...state,
+        plutoStatus: action.payload
       }
     default:
       return {
