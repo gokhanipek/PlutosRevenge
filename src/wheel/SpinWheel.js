@@ -49,17 +49,24 @@ class Wheel extends React.Component {
             ...pluto,
             properties: {
                 ...this.props.plutoStatus.properties,
-                size: award.id !== 6 ? award.effect + this.props.plutoStatus.properties.size : this.props.plutoStatus.properties.size,
+                size: award.effect + this.props.plutoStatus.properties.size,
+            }
+        }
+
+        const newPlutoAttacks = {
+            ...pluto,
+            properties: {
+                ...this.props.plutoStatus.properties,
                 attacks: [
                     ...newAttacks,
-                    award.id === 6 && this.props.availableAwards[0]
+                    this.props.availableAwards[0] 
                 ]
             }
         }
-        this.props.setPlutoStatus(newPluto);
+        this.props.setPlutoStatus(award.id === 6 ? newPlutoAttacks : newPluto);
         this.props.history.push('../fullview')
         const newAvailableAttacks = award.id === 6 && this.props.availableAwards.slice(1);
-        this.props.setAvailableAttacks(newAvailableAttacks);
+        award.id === 6 && this.props.setAvailableAttacks(newAvailableAttacks);
     }
 
     render() {
