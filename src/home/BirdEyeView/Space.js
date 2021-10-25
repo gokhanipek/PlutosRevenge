@@ -1,7 +1,7 @@
 
-import './BirdEyeView.scss';
+import './Space.scss';
 
-function BirdEyeView() {
+function Space() {
   return (
     <div className="birdview">
       <div className="star-container">
@@ -306,20 +306,8 @@ function BirdEyeView() {
         <div className="star"></div>
         <div className="star"></div>
       </div>
-      <div className="container">
-        <div className="sun"></div>
-        <div className="planets mercurys-orbit"><div className="mercury"></div></div>
-        <div className="planets venus-orbit"><div className="venus"></div></div>
-        <div className="planets earths-orbit"><div className="earth"></div></div>
-        <div className="planets mars-orbit"><div className="mars"></div></div>
-        <div className="planets jupiters-orbit"><div className="jupiter"></div></div>
-        <div className="planets saturns-orbit"><div className="saturn"></div></div>
-        <div className="planets uranus-orbit"><div className="uranus"></div></div>
-        <div className="planets neptunes-orbit"><div className="neptune"></div></div>
-        <div className="planets plutos-orbit"><div className="pluto"></div></div>
-      </div>
     </div>
   );
 }
 
-export default BirdEyeView;
+export default Space;

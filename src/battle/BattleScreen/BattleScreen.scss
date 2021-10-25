@@ -1,0 +1,109 @@
+.battle-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    .top {
+        width: 100%;
+        height: calc(50% - 70px);
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        position: relative;
+        padding: 10px;
+            .opponent-wrapper {
+                border-radius: 400px 400px 0 0;
+                width: 400px;
+                height: 200px;
+                overflow: hidden;
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                z-index: 2;
+            }
+
+            .opponent-shadow {
+                position: absolute;
+                right: -80px;
+                bottom: -46px;
+                width: 540px;
+                height: 75px;
+                background: #1e1e1e;
+                border-radius: 100%;
+                transform: rotate3d(1, 0, 0, 
+            65deg);
+                filter: blur(6px);
+                z-index: 2;
+            }
+        }
+        .status-bar{
+            width: 40%;
+            height: 10px;
+            margin: 20px 0 0 20px;
+            border-radius: 10px;
+            background: white;
+            position: relative;
+            overflow: hidden;
+            span {
+                display: block;
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 60%;
+                height: 100%;
+                background: darkslategray;
+            }
+        }
+
+        .bottom {
+            .status-bar {
+                margin: 40px 20px 0 0; 
+            }
+        }
+    .bottom {
+        width: 100%;
+        height: calc(50% - 70px);
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        position: relative;
+            .pluto-wrapper {
+                border-radius: 100%;
+                width: 40px;
+                height: 40px;
+                overflow: hidden;
+                position: absolute;
+                left: 160px;
+                bottom: 0;
+                z-index: 2;
+            }
+
+            .pluto-shadow {
+                position: absolute;
+                left: -80px;
+                bottom: -40px;
+                width: 500px;
+                height: 80px;
+                background: #1e1e1e;
+                border-radius: 100%;
+                transform: rotate3d(1, 0, 0, 65deg);
+                filter: blur(6px);
+                z-index: 1;
+            }
+
+        }
+    .moves {
+        width: 100%;
+        height: 140px;
+        flex-wrap: wrap;
+        display: flex;
+        background: grey;
+        .move-wrapper {
+            width: 25%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}

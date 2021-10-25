@@ -1,7 +1,14 @@
 .app-wrapper {
     width: 800px !important;
     height: 500px !important;
-    border: 1px solid red;
     overflow: hidden;
     position: relative;
+    background: #222;
+    .App {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
 }

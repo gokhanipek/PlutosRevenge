@@ -38,7 +38,7 @@ class Wheel extends React.Component {
         setTimeout(() => {
             this.wheelRef.current.classList.remove('spinning');
             this.awardRef.current.classList.add('visible');
-        }, 4000);
+        }, 11000);
     }
 
     awardOnClickHandler = (award) => {

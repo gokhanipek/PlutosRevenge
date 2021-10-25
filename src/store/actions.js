@@ -1,4 +1,4 @@
-import { SET_PLANET, SET_AWARD, SET_PLUTO_STATUS, SET_AVAILABLE_ATTACKS } from "./constants";
+import { SET_PLANET, SET_AWARD, SET_PLUTO_STATUS, SET_AVAILABLE_ATTACKS, SET_OPPONENT,SET_BATTLE_PLUTO } from "./constants";
 
 export const setPlanet = (id) => {
     return {
@@ -17,6 +17,20 @@ export const setPlutoStatus = (item) => {
 export const setAvailableAttacks = (item) => {
     return {
         type: SET_AVAILABLE_ATTACKS,
+        payload: item
+    }
+}
+
+export const setOpponent = (item) => {
+    return {
+        type: SET_OPPONENT,
+        payload: item
+    }
+}
+
+export const setBattlePluto = (item) => {
+    return {
+        type: SET_BATTLE_PLUTO,
         payload: item
     }
 }

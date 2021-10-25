@@ -1,6 +1,6 @@
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import './App.scss';
-import BirdEyeView from "./home/BirdEyeView/BirdEyeView";
+import BirdEyeView from "./home/BirdEyeView/Space";
 import FullView from "./home/FullView/FullView";
 import Home from "./home/Home";
 import PlanetInfo from "./planets/PlanetInfo/PlanetInfo"
@@ -15,6 +15,8 @@ import hp10minus from './assets/images/hp10minus.png';
 import hp250 from './assets/images/hp250.png';
 import hp90minus from './assets/images/hp90minus.png';
 import rockets from './assets/images/rockets.png';
+import BattleScreen from "./battle/BattleScreen/BattleScreen";
+import Space from "./home/BirdEyeView/Space";
 
 
 function App() {
@@ -72,15 +74,10 @@ function App() {
   ];
   return (
     <div className="app-wrapper">
+        <Space />
         <Router>
           <div className="App">
             <Switch>
-              <Route path="/home">
-                <Home />
-              </Route>
-              <Route path="/birdeye">
-                <BirdEyeView />
-              </Route>
               <Route path="/fullview">
                 <FullView />
               </Route>
@@ -89,6 +86,12 @@ function App() {
               </Route>
               <Route path="/wheel">
                 <Wheel items={spinwheelSlices} />
+              </Route>
+              <Route path="/battle">
+                <BattleScreen />
+              </Route>
+              <Route exact path="/">
+                <FullView />
               </Route>
             </Switch>
           </div>

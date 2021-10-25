@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { withRouter, useLocation, useHistory } from 'react-router-dom';
+import { setBattlePluto, setOpponent } from '../../store/actions';
 import './PlanetInfo.scss';
 
 const PlanetInfo = () => {
@@ -9,6 +10,7 @@ const PlanetInfo = () => {
     })
     const location = useLocation();
     const history = useHistory();
+    const dispatch = useDispatch()
     const planetsReducer = useSelector(state => state.planetsReducer);
     const plutoStatus = useSelector(state => state.planetsReducer.plutoStatus);
 
@@ -18,6 +20,12 @@ const PlanetInfo = () => {
     useEffect(() => {
         import(`./../../assets/images/${planetLowerCase.toLowerCase()}.jpeg`).then(setImage)
     }, [planetsReducer.selectedPlanet])
+
+    const onClickHandler = (planet) => {
+        dispatch(setOpponent(planet));
+        dispatch(setBattlePluto(plutoStatus))
+        history.push('../battle');
+    }
 
     const planet = planetsReducer.planets.filter(item => item.name === id).reduce(x => x);
     return (
@@ -54,7 +62,7 @@ const PlanetInfo = () => {
                     <button onClick={() => history.push('../wheel')}>Play Spin The Wheel</button>
                 </div> : 
                 plutoStatus.properties.size > 0 && <div className="actions-tab">
-                    <button>Attack!</button>
+                    <button onClick={() => onClickHandler(planet)}>Attack!</button>
                     {planet.properties.orbitCount > 0 && <button>Attack it's orbits!</button>}
                 </div>
             }

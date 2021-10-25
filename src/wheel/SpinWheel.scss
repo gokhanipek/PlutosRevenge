@@ -143,7 +143,7 @@
   }
   
   .wheel.spinning {
-    transition: transform 3s cubic-bezier(0,1.11,.58,.99);
+    transition: transform 10.5s cubic-bezier(0,1.11,.58,.99);
     transform-origin: center;
     transform: rotate(calc(((var(--item-nb) - var(--selected-item)) * -36deg) - 3600deg));
   }

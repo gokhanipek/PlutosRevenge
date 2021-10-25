@@ -1,4 +1,3 @@
-export const SET_PLANET = "SET_PLANET";
 export const STATUS = "STATUS";
 export const FIGHTING = "FIGHTING";
 export const FIRE = "FIRE";
@@ -6,8 +5,14 @@ export const WATER = "WATER";
 export const ICE = "ICE";
 export const WIND = "WIND";
 export const POISON = "POISON";
+
+
+
 export const MALE = "MALE";
 export const FEMALE = "FEMALE";
+
+
+
 export const ARIES = "ARIES";
 export const LIBRA = "LIBRA";
 export const SCORPIO = "SCORPIO";
@@ -15,6 +20,9 @@ export const AQUARIOUS = "AQUARIOUS";
 export const VIRGO = "VIRGO";
 export const GEMINI = "GEMINI";
 export const LION = "LION";
+
+
+
 export const MERCURY = "MERCURY";
 export const VENUS = "VENUS";
 export const EARTH = "EARTH";
@@ -24,9 +32,14 @@ export const SATURN = "SATURN";
 export const URANUS = "URANUS";
 export const NEPTUNE = "NEPTUNE";
 export const PLUTO = "PLUTO";
+
+
+export const SET_PLANET = "SET_PLANET";
 export const SET_AWARD = "SET_AWARD";
 export const SET_PLUTO_STATUS = "SET_PLUTO_STATUS";
 export const SET_AVAILABLE_ATTACKS = "SET_AVAILABLE_ATTACKS";
+export const SET_OPPONENT = "SET_OPPONENT";
+export const SET_BATTLE_PLUTO = "SET_BATTLE_PLUTO";
 
 export const defaultAttackAwards = [
     {
@@ -80,7 +93,7 @@ export const PLANETS = [
                 {
                     name: 'Love Scent',
                     type: STATUS,
-                    damage: null
+                    damage: 10
                 },
                 {
                     name: 'Ember',
@@ -123,7 +136,7 @@ export const PLANETS = [
                 {
                     name: 'Love Scent',
                     type: STATUS,
-                    damage: null
+                    damage: 10
                 },
                 {
                     name: 'Acid',
