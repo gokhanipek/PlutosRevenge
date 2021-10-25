@@ -40,6 +40,12 @@ export const SET_PLUTO_STATUS = "SET_PLUTO_STATUS";
 export const SET_AVAILABLE_ATTACKS = "SET_AVAILABLE_ATTACKS";
 export const SET_OPPONENT = "SET_OPPONENT";
 export const SET_BATTLE_PLUTO = "SET_BATTLE_PLUTO";
+export const SET_ORBIT = "SET_ORBIT";
+export const SET_LAST_PLAYED = "SET_LAST_PLAYED";
+export const SET_OPPONENT_DAMAGE = "SET_OPPONENT_DAMAGE";
+export const SET_OPPONENT_ATTACK = "SET_OPPONENT_ATTACK";
+export const REMOVE_PLANET = "REMOVE_PLANET";
+export const UPDATE_PLANETS = "UPDATE_PLANETS"; 
 
 export const defaultAttackAwards = [
     {
@@ -73,7 +79,7 @@ export const PLANETS = [
         properties: {
             gender: FEMALE,
             speed: 100,
-            size: 50,
+            size: 100,
             character: [
                 {
                     style: 'Social Drinker',
@@ -112,7 +118,7 @@ export const PLANETS = [
         properties: {
             gender: FEMALE,
             speed: 80,
-            size: 75,
+            size: 150,
             character: [
                 {
                     style: 'Social Drinker',
@@ -155,7 +161,7 @@ export const PLANETS = [
         properties: {
             gender: MALE,
             speed: 70,
-            size: 125,
+            size: 450,
             character: [
                 {
                     style: 'Social Drinker',
@@ -175,22 +181,22 @@ export const PLANETS = [
                 {
                     name: 'Insult',
                     type: STATUS,
-                    damage: 10
+                    damage: 30
                 },
                 {
                     name: 'Nukes',
                     type: FIGHTING,
-                    damage: 70
+                    damage: 250
                 },
                 {
                     name: 'Water Cannon',
                     type: WATER,
-                    damage: 80
+                    damage: 100
                 },
                 {
                     name: 'Magma Cannon',
                     type: FIRE,
-                    damage: 90
+                    damage: 200
                 }
             ],
             background: 'Rockstar. Legend. Cool guy. Mr he who has it all! Bitchy. Does a bit of everything, has parasites named humans. He hates them but those parasites also help him with building new technologies and therefore weapons for him. Once upon a time, was such a sweetheart, but after involving with Cartels and dark businesses he is a dangerous planet to be around. Knows Mars is the only one that he can trust and the biggest weapon he can use when the time is right. Used to date Pluto.',
@@ -204,7 +210,7 @@ export const PLANETS = [
         properties: {
             gender: MALE,
             speed: 60,
-            size: 110,
+            size: 310,
             character: [
                 {
                     style: 'Social Drinker',
@@ -224,22 +230,22 @@ export const PLANETS = [
                 {
                     name: 'Double Team',
                     type: STATUS,
-                    damage: 10
+                    damage: 40
                 },
                 {
                     name: 'Rover: Curiosity',
                     type: FIGHTING,
-                    damage: 40
+                    damage: 80
                 },
                 {
                     name: 'Water Gun',
                     type: WATER,
-                    damage: 50
+                    damage: 150
                 },
                 {
                     name: 'Volcano Cannon',
                     type: FIRE,
-                    damage: 70
+                    damage: 170
                 }
             ],
             background: 'One of the cool guys in the universe. Kind of known as a side-kick to Earth but he does not really mind that. Takes pride of being the only other planet that humans(parasites) can live. As being childhood friends with Earth, he always goes to Earth aid if someone bother Earth. Deep inside he knows Earth will not do the same for him, tries not to think about it too much.',
@@ -253,7 +259,7 @@ export const PLANETS = [
         properties: {
             gender: MALE,
             speed: 50,
-            size: 500,
+            size: 2500,
             character: [
                 { 
                     style: 'Beauty',
@@ -269,7 +275,7 @@ export const PLANETS = [
                 {
                     name: 'When I was your age, I used to respect my elders. Not trying to fight them! (Throws a sandal at your face)',
                     type: STATUS,
-                    damage: null
+                    damage: 1000
                 },
             ],
             background: 'After thousands of years of glory days, Jupiter meditated a lot and has no interest in this life. He has his own spiritial world in his brain, and lives there. Some may say he got senile but you cant say it to his face. He will beat you with his sandal or worse, he will bore you with his wisdom... God forbid.',
@@ -283,7 +289,7 @@ export const PLANETS = [
         properties: {
             gender: FEMALE,
             speed: 60,
-            size: 250,
+            size: 750,
             character: [
                 { 
                     style: 'Beauty',
@@ -299,22 +305,22 @@ export const PLANETS = [
                 {
                     name: 'Double Team',
                     type: STATUS,
-                    damage: 10
+                    damage: 50
                 },
                 {
                     name: 'F***ing SLAYER! \\m/',
                     type: FIGHTING,
-                    damage: 40
+                    damage: 400
                 },
                 {
                     name: 'Iron Mine',
                     type: WATER,
-                    damage: 50
+                    damage: 500
                 },
                 {
                     name: 'Mega Death!',
                     type: FIRE,
-                    damage: 70
+                    damage: 700
                 }
             ],
             background: '6th planet, second biggest after Jupiter. Not that old though. Went to a concert once in an outer galaxy. A band named SATURNUS was playing. Instantly felt connected and become the biggest(no pun, he is huge) metalhead in the universe. After founding about the other metal bands, he studied thousands of years to perfect his attacks and named them after biggest metal bands in the universe. Fun guy to be around, not so fun to battle against. Constantly tells stories about how hard he danced in the moshpits. Wears a leather jacket with  around 5000 band patches on it. Does not like Kanye West and Fred Durst',
@@ -328,7 +334,7 @@ export const PLANETS = [
         properties: {
             gender: MALE,
             speed: 30,
-            size: 200,
+            size: 400,
             character: [
                 {
                     style: 'Social Drinker',
@@ -351,19 +357,19 @@ export const PLANETS = [
                     damage: 10
                 },
                 {
-                    name: 'Ice Spear',
+                    name: 'Knock, knock',
                     type: ICE,
                     damage: 40
                 },
                 {
                     name: 'Cheesy Pick up Line',
                     type: ICE,
-                    damage: 60
+                    damage: 100
                 },
                 {
                     name: 'Not Ice Breaker',
                     type: ICE,
-                    damage: 40
+                    damage: 20
                 }
             ],
             background: 'Probably the weirdest guy in the universe. Has a thing for weird jokes. Likes to go out and socialise with other planets and stars. Even though most people hate him instantly, he has a mindset of Quantity, not quality, which is kinda working out well for him. Womanizer of the universe.',
@@ -377,7 +383,7 @@ export const PLANETS = [
         properties: {
             gender: MALE,
             speed: 20,
-            size: 170,
+            size: 370,
             character: [
                 {
                     style: 'Social Drinker',

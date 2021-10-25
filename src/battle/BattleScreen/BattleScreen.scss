@@ -1,3 +1,17 @@
+.turn-info{
+    position: absolute;
+    left: 0%;
+    bottom: -100%;
+    width: 100%;
+    height: 150px;
+    background:green;
+    z-index: 10;
+    transition: 0.7s;
+    &.visible {
+        bottom: 0%;
+    }
+}
+
 .battle-wrapper {
     display: flex;
     flex-direction: column;
@@ -11,55 +25,63 @@
         justify-content: flex-start;
         position: relative;
         padding: 10px;
+            .info{
+                position: absolute;
+                top: 40px;
+                left: 30px;
+                display: flex;
+                flex-direction: column;
+                width: 200px;
+                .battle-member{
+                    color: white;
+                }
+                .status-bar{
+                    width: 100%;
+                    height: 10px;
+                    border-radius: 10px;
+                    background: white;
+                    overflow: hidden;
+                    position: relative;
+                    .status-bar-left {
+                        display: block;
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        width: 60%;
+                        height: 100%;
+                        background: darkslategray;
+                    }
+                }
+            }
             .opponent-wrapper {
-                border-radius: 400px 400px 0 0;
+                border-radius: 400px;
                 width: 400px;
-                height: 200px;
+                height: 400px;
                 overflow: hidden;
                 position: absolute;
                 right: 0;
-                bottom: 0;
+                top: -50px;
                 z-index: 2;
+                transition: 1s cubic-bezier(1,-0.2,.11,1.23);
+                &.fainted {
+                    top: 500px;
+                }
             }
 
             .opponent-shadow {
                 position: absolute;
                 right: -80px;
-                bottom: -46px;
+                bottom: -186px;
                 width: 540px;
                 height: 75px;
                 background: #1e1e1e;
                 border-radius: 100%;
-                transform: rotate3d(1, 0, 0, 
-            65deg);
+                transform: rotate3d(1, 0, 0, 65deg);
                 filter: blur(6px);
-                z-index: 2;
-            }
-        }
-        .status-bar{
-            width: 40%;
-            height: 10px;
-            margin: 20px 0 0 20px;
-            border-radius: 10px;
-            background: white;
-            position: relative;
-            overflow: hidden;
-            span {
-                display: block;
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 60%;
-                height: 100%;
-                background: darkslategray;
+                z-index: 1;
             }
         }
 
-        .bottom {
-            .status-bar {
-                margin: 40px 20px 0 0; 
-            }
-        }
     .bottom {
         width: 100%;
         height: calc(50% - 70px);
@@ -67,6 +89,34 @@
         flex-direction: row;
         justify-content: flex-end;
         position: relative;
+        .info{
+            position: absolute;
+            top: 40px;
+            left: 30px;
+            display: flex;
+            flex-direction: column;
+            width: 200px;
+            .battle-member{
+                color: white;
+            }
+            .status-bar{
+                width: 100%;
+                height: 10px;
+                border-radius: 10px;
+                background: white;
+                overflow: hidden;
+                position: relative;
+                .status-bar-left {
+                    display: block;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    height: 100%;
+                    background: darkslategray;
+                    transition: 0.8s width;
+                }
+            }
+        }
             .pluto-wrapper {
                 border-radius: 100%;
                 width: 40px;
@@ -76,6 +126,10 @@
                 left: 160px;
                 bottom: 0;
                 z-index: 2;
+                transition: 1s cubic-bezier(1,-0.2,.11,1.23);
+                &.fainted {
+                    bottom: -200px;
+                }
             }
 
             .pluto-shadow {
@@ -105,5 +159,27 @@
             justify-content: center;
             align-items: center;
         }
+    }
+}
+
+.award-screen {
+    position: absolute;
+    top: 150px;
+    left: -100%;
+    width: 100%;
+    height: 200px;
+    background-color: #010101;
+    opacity: 1;
+    transition: 0.4s left;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    &.visible {
+        left: 0;
+    }
+    h2, h3 {
+        color: white;
     }
 }

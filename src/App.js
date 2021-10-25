@@ -23,7 +23,7 @@ function App() {
   const spinwheelSlices = [
     {
       id: 1,
-      sliceImageUrl: hp50,
+      sliceImageUrl: rockets,
       backgroundImageUrl: Slice1,
     },
     {

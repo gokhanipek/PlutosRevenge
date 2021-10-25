@@ -23,8 +23,10 @@ class Wheel extends React.Component {
     selectItem() {
         if (this.outlineRef.current.classList.contains('spinning')) return;
         if (this.state.selectedItem === null) {
-            const selectedItem = Math.floor(Math.random() * 10);
-            this.props.findAWard(selectedItem);
+            const selectedItem = Math.floor(Math.random() * 10) + 1;
+
+
+            !!selectedItem && this.props.findAWard(selectedItem);
 
 
             if (this.props.onSelectItem) {
@@ -63,10 +65,10 @@ class Wheel extends React.Component {
                 ]
             }
         }
-        this.props.setPlutoStatus(award.id === 6 ? newPlutoAttacks : newPluto);
+        this.props.setPlutoStatus(award.id === 6 || award.id === 10 ? newPlutoAttacks : newPluto);
         this.props.history.push('../fullview')
-        const newAvailableAttacks = award.id === 6 && this.props.availableAwards.slice(1);
-        award.id === 6 && this.props.setAvailableAttacks(newAvailableAttacks);
+        const newAvailableAttacks = [6,10].includes(award.id) && this.props.availableAwards.slice(1);
+        [6,10].includes(award.id) && this.props.setAvailableAttacks(newAvailableAttacks);
     }
 
     render() {
@@ -84,7 +86,7 @@ class Wheel extends React.Component {
                 <div className="award-screen" ref={this.awardRef}>
                     {this.props.award &&
                         <>
-                            {this.props.award.id === 6 ?
+                            {[6,10].includes(this.props.award.id) ?
                                 <h2>Congragulations! {this.props.award.message}, You new attack is, {this.props.availableAwards[0].name}!</h2> :
                                 this.props.plutoStatus.properties.size + this.props.award.effect > 0 ?
                                     <h2>{this.props.award.message} now you have {this.props.plutoStatus.properties.size + this.props.award.effect} health points!</h2> :
