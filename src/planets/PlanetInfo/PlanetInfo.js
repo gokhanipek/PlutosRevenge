@@ -54,37 +54,37 @@ const PlanetInfo = () => {
                 <div className="planet-image">
                     <img alt="this is a planet" src={image.default} />
                 </div>
+                <div className="actions-tab">
+                    <button onClick={() => history.push('../fullview')}>MAP</button>
+                    {
+                        planetsReducer.selectedPlanet === "PLUTO" ? 
+                                <button onClick={() => history.push('../wheel')}>Play Spin The Wheel</button>
+                            : 
+                            planetsReducer.planets.find(item => item.name === 'PLUTO') && <>
+                                <button onClick={() => onClickHandler(planet, 'planet')}>Attack!</button>
+                                {planet.properties.orbitCount > 0 && <button onClick={() => onClickHandler(planet, 'orbit')}>Attack it's orbits!</button>}
+                            </>
+                    }
+                </div>
             </div>
             <div className="right-side">
-                planet page: {location.state.id}
-                <span>Number: {planet.id}</span>
-                <span>Type: {planet.type}</span>
-                <span>Size: {planet.name === 'PLUTO' ? plutoStatus.properties.size : planet.properties.size}</span>
-                <span>Speed: {planet.properties.speed}</span>
-                <span>Number of orbits: {planet.properties.orbitCount}</span>
-                <span>Character
-                    {planet.properties.character.map(item => <span>{item.style}: {item.level}</span>)}
-                </span>
-                <span>Attacks
-                    {plutoStatus.properties ? plutoStatus.properties.attacks.map(item => <span>Name: {item.name}, Type: {item.type}, Damage: {item.damage}</span>) : planet.properties.attacks.map(item => <span>Name: {item.name}, Type: {item.type}, Damage: {item.damage}</span>)}
-                </span>
-                <span>
-                    Background: {planet.properties.background}
-                </span>
-            </div>
-            <div className="actions-tab">
-                <button onClick={() => history.push('../fullview')}>MAP</button>
-            </div>
-            {
-            planetsReducer.selectedPlanet === "PLUTO" ? 
-                <div className="actions-tab">
-                    <button onClick={() => history.push('../wheel')}>Play Spin The Wheel</button>
-                </div> : 
-                planetsReducer.planets.find(item => item.name === 'PLUTO') && <div className="actions-tab">
-                    <button onClick={() => onClickHandler(planet, 'planet')}>Attack!</button>
-                    {planet.properties.orbitCount > 0 && <button onClick={() => onClickHandler(planet, 'orbit')}>Attack it's orbits!</button>}
+                <div className="right-side-container">
+                    <span>Number: {planet.id}</span>
+                    <span>Type: {planet.type}</span>
+                    <span>Size: {planet.name === 'PLUTO' ? plutoStatus.properties.size : planet.properties.size}</span>
+                    <span>Speed: {planet.properties.speed}</span>
+                    <span>Number of orbits: {planet.properties.orbitCount}</span>
+                    <span className="character">Character
+                        {planet.properties.character.map(item => <span>{item.style}: {item.level}</span>)}
+                    </span>
+                    <span className="attacks">Attacks
+                        {planet.name === 'PLUTO' ? plutoStatus.properties.attacks.map(item => <span>Name: {item.name}, Type: {item.type}, Damage: {item.damage}</span>) : planet.properties.attacks.map(item => <span>Name: {item.name}, Type: {item.type}, Damage: {item.damage}</span>)}
+                    </span>
+                    <span>
+                        Background: {planet.properties.background}
+                    </span>
                 </div>
-            }
+            </div>            
         </div>
     )
 }

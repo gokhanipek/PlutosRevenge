@@ -1,4 +1,4 @@
-import { PLANETS, SET_PLANET, SET_PLUTO_STATUS, REMOVE_PLANET } from "./constants";
+import { START_GAME, PLANETS, SET_PLANET, SET_PLUTO_STATUS, REMOVE_PLANET } from "./constants";
 
 const initialState = {
     planets: PLANETS,
@@ -6,8 +6,11 @@ const initialState = {
 };
 
 const planetsReducer = (state = initialState, action ) => {
-  console.warn(action);
   switch (action.type) {
+    case START_GAME:
+      return {
+        ...initialState
+      }
     case SET_PLANET:
       return {
         ...state,

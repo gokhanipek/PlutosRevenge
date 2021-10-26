@@ -52,6 +52,9 @@ class Wheel extends React.Component {
             properties: {
                 ...this.props.plutoStatus.properties,
                 size: award.effect + this.props.plutoStatus.properties.size,
+                attacks: [
+                    ...this.props.plutoStatus.properties.attacks
+                ]
             }
         }
 
@@ -61,14 +64,14 @@ class Wheel extends React.Component {
                 ...this.props.plutoStatus.properties,
                 attacks: [
                     ...newAttacks,
-                    this.props.availableAwards[0] 
+                    this.props.availableAwards[0]
                 ]
             }
         }
         this.props.setPlutoStatus(award.id === 6 || award.id === 10 ? newPlutoAttacks : newPluto);
         this.props.history.push('../fullview')
-        const newAvailableAttacks = [6,10].includes(award.id) && this.props.availableAwards.slice(1);
-        [6,10].includes(award.id) && this.props.setAvailableAttacks(newAvailableAttacks);
+        const newAvailableAttacks = [6, 10].includes(award.id) && this.props.availableAwards.slice(1);
+        [6, 10].includes(award.id) && this.props.setAvailableAttacks(newAvailableAttacks);
     }
 
     render() {
@@ -86,14 +89,21 @@ class Wheel extends React.Component {
                 <div className="award-screen" ref={this.awardRef}>
                     {this.props.award &&
                         <>
-                            {[6,10].includes(this.props.award.id) ?
-                                <h2>Congragulations! {this.props.award.message}, You new attack is, {this.props.availableAwards[0].name}!</h2> :
+                            {[6, 10].includes(this.props.award.id) ?
+                                <>
+                                    <h2>Congragulations! {this.props.award.message}, You new attack is, {this.props.availableAwards[0].name}! Check your profile about your new attack!</h2>
+                                    <button onClick={() => this.awardOnClickHandler(this.props.award)}>Go back to map</button>
+                                </> :
                                 this.props.plutoStatus.properties.size + this.props.award.effect > 0 ?
-                                    <h2>{this.props.award.message} now you have {this.props.plutoStatus.properties.size + this.props.award.effect} health points!</h2> :
-                                    <h2>Too bad... You are an example of how bad, bad habits can destroy a beautiful being... Your effords of revenge has come to a miserable end...</h2>
+                                    <>
+                                        <h2>{this.props.award.message} now you have {this.props.plutoStatus.properties.size + this.props.award.effect} health points!</h2>
+                                        <button onClick={() => this.awardOnClickHandler(this.props.award)}>Go back to map</button>
+                                    </> :
+                                    <>
+                                        <h3>Too bad... You are an example of how bad habits can destroy a beautiful being... Your effords of revenge has come to a miserable end...</h3>
+                                        <button onClick={() => this.props.history.push('../deepdarkness')}>Meet your destiny</button>
+                                    </>
                             }
-
-                            <button onClick={() => this.awardOnClickHandler(this.props.award)}>Go back to map</button>
                         </>
                     }
                 </div>

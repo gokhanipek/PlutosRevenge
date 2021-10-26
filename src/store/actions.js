@@ -1,4 +1,4 @@
-import { SET_PLANET, SET_AWARD, SET_PLUTO_STATUS, SET_AVAILABLE_ATTACKS, SET_OPPONENT, SET_BATTLE_PLUTO, SET_ORBIT, SET_LAST_PLAYED, SET_OPPONENT_DAMAGE, SET_OPPONENT_ATTACK, REMOVE_PLANET } from "./constants";
+import { START_GAME, SET_PLANET, SET_AWARD, SET_PLUTO_STATUS, SET_AVAILABLE_ATTACKS, SET_OPPONENT, SET_BATTLE_PLUTO, SET_ORBIT, SET_LAST_PLAYED, SET_OPPONENT_DAMAGE, SET_OPPONENT_ATTACK, REMOVE_PLANET } from "./constants";
 
 export const setPlanet = (id) => {
     return {
@@ -62,6 +62,8 @@ export const removePlanet = item => {
         payload: item
     }
 }
+
+export const startGame = () => ({type: START_GAME})
 
 export const setOrbit = () => ({ type: SET_ORBIT })
 

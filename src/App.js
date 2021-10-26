@@ -17,6 +17,8 @@ import hp90minus from './assets/images/hp90minus.png';
 import rockets from './assets/images/rockets.png';
 import BattleScreen from "./battle/BattleScreen/BattleScreen";
 import Space from "./home/BirdEyeView/Space";
+import GameOver from "./home/GameOver";
+import GameEnd from "./home/GameEnd";
 
 
 function App() {
@@ -89,6 +91,15 @@ function App() {
               </Route>
               <Route path="/battle">
                 <BattleScreen />
+              </Route>
+              <Route path="/deepdarkness">
+                <GameOver />
+              </Route>
+              <Route path="/endofstory">
+                <GameEnd />
+              </Route>
+              <Route path="/home">
+                <Home />
               </Route>
               <Route exact path="/">
                 <FullView />

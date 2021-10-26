@@ -33,7 +33,7 @@ export const URANUS = "URANUS";
 export const NEPTUNE = "NEPTUNE";
 export const PLUTO = "PLUTO";
 
-
+export const START_GAME = "START_GAME";
 export const SET_PLANET = "SET_PLANET";
 export const SET_AWARD = "SET_AWARD";
 export const SET_PLUTO_STATUS = "SET_PLUTO_STATUS";
@@ -161,7 +161,7 @@ export const PLANETS = [
         properties: {
             gender: MALE,
             speed: 70,
-            size: 450,
+            size: 400,
             character: [
                 {
                     style: 'Social Drinker',
@@ -199,7 +199,7 @@ export const PLANETS = [
                     damage: 200
                 }
             ],
-            background: 'Rockstar. Legend. Cool guy. Mr he who has it all! Bitchy. Does a bit of everything, has parasites named humans. He hates them but those parasites also help him with building new technologies and therefore weapons for him. Once upon a time, was such a sweetheart, but after involving with Cartels and dark businesses he is a dangerous planet to be around. Knows Mars is the only one that he can trust and the biggest weapon he can use when the time is right. Used to date Pluto.',
+            background: 'Rockstar. Legend. Cool guy. Mr he who has it all! Does a bit of everything, has parasites named humans. He hates them but those parasites also help him with building new technologies and therefore weapons for him. Once upon a time, was such a sweetheart, but after involving with Cartels and dark businesses he is a dangerous planet to be around. Knows Mars is the only one that he can trust and the biggest weapon he can use when the time is right. Used to date Pluto.',
             orbitCount: 1
         }
     },
@@ -273,7 +273,7 @@ export const PLANETS = [
             defenseResistance: 0,
             attacks: [
                 {
-                    name: 'When I was your age, I used to respect my elders. Not trying to fight them! (Throws a sandal at your face)',
+                    name: 'When I was your age, I used to respect my elders!',
                     type: STATUS,
                     damage: 1000
                 },
@@ -421,7 +421,7 @@ export const PLANETS = [
                     damage: 40
                 }
             ],
-            background: 'When the Sun was organizing the positions of the planets, he got one of the least spots, pretty far away from other planets to socialise and have friends. Which led him to become depressed in his early ages. Has pretty low self-esteem, envyies planets like Earth, Mars, platonically in love with Venus. Big Edgar Allen Poe and HP Lovecraft fan. Has tattoo of Cthulhu. Maybe that is why Venus and Mercury find him weird and stays away from him.',
+            background: 'When the Sun was organizing the positions of the planets, he got one of the worst spots, pretty far away from other planets to socialise and have friends. Which led him to become depressed in his early ages. Has pretty low self-esteem, envyies planets like Earth, Mars, platonically in love with Venus. Big Edgar Allen Poe and HP Lovecraft fan. Has tattoo of Cthulhu. Maybe that is why Venus and Mercury find him weird and stays away from.',
             orbitCount: 5
         }
     },
@@ -459,7 +459,7 @@ export const PLANETS = [
                     damage: 10
                 }
             ],
-            background: 'One of the cutest but also pissed creatures in the solar system and probably the whole universe. Around 10 years ago when she found out about dark businesses Earth got into, she dumped Earth and PASA(Pluto Annoyers and Space Administration, NASA literally changed their name to that.) of Earth decided to change Plutos status from a Planet to NOT a planet. This and also being far far far away from rest of the guys made her a lonely, sad, broken thing. She think to himself: What am I, Im not even a planet, what is there to live for? And she started drinking heavily, built an addiction for drinking and betting. Alone. Also being away from all the warmth of Sun, she become sick, sneezes constantly. After Sun announced he is losing his power to give warmth and will retire, she has only and ONLY purpose in this life. She will confront Earth and show it in his face.', 
+            background: 'One of the cutest but also pissed creatures in the solar system and probably the whole universe. Around 10 years ago when she found out about dark businesses Earth got into, she dumped Earth and PASA(Pluto Annoyers and Space Administration, NASA literally changed their name to that.) of Earth decided to change Plutos status from a Planet to NOT a planet. This and also being far far far away from rest of the guys made her a lonely, sad, broken thing. She think to herself: What am I? Im not even a planet, what is there to live for? And she started drinking heavily, built an addiction for drinking and betting. Alone. Also being away from all the warmth of Sun, she become sick, sneezes constantly. After Sun announced he is losing his power to give warmth and will retire, she has only and ONLY purpose in this life. She will confront Earth and show it in his face.', 
             orbitCount: 0
         }
     },

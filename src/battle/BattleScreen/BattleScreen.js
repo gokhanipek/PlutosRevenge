@@ -83,8 +83,9 @@ const BattleScreen = () => {
         }
     }
 
-    const battleEndHandler = () => {
-        history.push('../fullview');
+    const battleEndHandler = (result) => {
+        result === 'win' && opponent.name === 'EARTH' ? history.push('../endofstory') : history.push('../fullview');
+        result === 'lose' && history.push('../deepdarkness')
         dispatch(removePlanet(plutoHP > 0 ? opponent : pluto))
         setLastPlayer('');
     }
@@ -95,16 +96,16 @@ const BattleScreen = () => {
             <div className="award-screen" ref={awardRef}>
                 <>
                     {plutoHP > 0 ? <>
-                        <h2>Revenge is a dish best served cold. Have no mercy for the ones that stan in my way.</h2>
+                        <h2>Revenge is a dish best served cold. Have no mercy for the ones that stand in my way.</h2>
+                        <button onClick={() => battleEndHandler('win')}>Go back to map</button>
                         </> : <>
                         <h2>No! God! Oh God, what is life? How can someone so talented die so young? What's being young? I'm not young, I'm old! </h2>
+                        <button onClick={() => battleEndHandler('lose')}>Game Over</button>
                         </> 
                     }
-                
-                    <button onClick={() => battleEndHandler()}>Go back to map</button>
                 </>
             </div>
-            <div className="turn-info" ref={infoRef}>{lastAttack.name}</div>
+            <div className="turn-info" ref={infoRef}>{lastPlayer !== 'pluto' ? 'PLUTO used ' : `${opponent.name} used `}{lastAttack.name}</div>
             <div className="top">
                 <div className="info">
                     <p className="battle-member">{opponent.name}</p>

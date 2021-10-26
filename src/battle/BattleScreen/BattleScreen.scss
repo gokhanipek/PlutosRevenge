@@ -4,9 +4,14 @@
     bottom: -100%;
     width: 100%;
     height: 150px;
-    background:green;
+    background:white;
     z-index: 10;
     transition: 0.7s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
     &.visible {
         bottom: 0%;
     }
@@ -158,6 +163,13 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            font-size: 16px;
+            line-height: 1.5;
+            font-weight: bold;
+            cursor: pointer;
+            &:hover {
+                background-color: lightslategrey;
+            }
         }
     }
 }
@@ -181,5 +193,7 @@
     }
     h2, h3 {
         color: white;
+        width: 80%;
+        text-align: center;
     }
 }
