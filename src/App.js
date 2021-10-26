@@ -102,7 +102,7 @@ function App() {
                 <Home />
               </Route>
               <Route exact path="/">
-                <FullView />
+                <Home />
               </Route>
             </Switch>
           </div>
