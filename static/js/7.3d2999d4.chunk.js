@@ -1,0 +1,2 @@
+(this.webpackJsonpplutosrevenge=this.webpackJsonpplutosrevenge||[]).push([[7],{60:function(e,s,t){"use strict";t.r(s),s.default=t.p+"static/media/mercury.16c99564.jpeg"}}]);
+//# sourceMappingURL=7.3d2999d4.chunk.js.map
