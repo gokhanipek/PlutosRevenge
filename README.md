@@ -1,4 +1,4 @@
-A pokemon style game I built in 2 days for [https://replit.com/site/kajam](Replit - Kajam) challenge. 
+A pokemon style game I built in 2 days for [https://replit.com/site/kajam](https://replit.com/site/kajam) Replit - Kajam challenge. 
 
 ### `npm install` - to install packages
 ### `npm start`- to start the project locally
