@@ -1,0 +1,2 @@
+(this.webpackJsonpplutosrevenge=this.webpackJsonpplutosrevenge||[]).push([[11],{64:function(e,s,t){"use strict";t.r(s),s.default=t.p+"static/media/sun.b83dde6d.jpeg"}}]);
+//# sourceMappingURL=11.9729f6b7.chunk.js.map
