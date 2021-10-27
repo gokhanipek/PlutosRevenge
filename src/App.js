@@ -101,7 +101,7 @@ function App() {
               <Route path="/home">
                 <Home />
               </Route>
-              <Route exact path="/">
+              <Route path="/PlutosRevenge">
                 <Home />
               </Route>
             </Switch>
