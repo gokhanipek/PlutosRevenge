@@ -18,6 +18,7 @@ const BattleScreen = () => {
     const hpRef = useRef(0);
     const plutoHpRef = useRef();
     const awardRef = useRef();  
+    const turnBgRef = useRef();
     const history = useHistory();
 
     const [opponentHP, setOpponentHP] = useState(opponent.properties.size || 0);
@@ -39,7 +40,6 @@ const BattleScreen = () => {
             setPlutoHP(plutoHP - attack.damage > 0 ? plutoHP - attack.damage : 0 );
             setTimeout(() => setLastPlayer('opponent'), 4000)
         }
-
     }, [lastPlayer])
     
     
@@ -74,6 +74,8 @@ const BattleScreen = () => {
     }, [opponentHP, plutoHP])
 
     const plutoAttackHandler = (attack) => {
+        turnBgRef.current.classList.add('visible');
+        setTimeout(() => turnBgRef.current.classList.remove('visible'), 6500)
         if(lastPlayer !== 'pluto') {
             setLastAttack(attack);
             infoRef.current.classList.add('visible');
@@ -106,6 +108,7 @@ const BattleScreen = () => {
                 </>
             </div>
             <div className="turn-info" ref={infoRef}>{lastPlayer !== 'pluto' ? 'PLUTO used ' : `${opponent.name} used `}{lastAttack.name}</div>
+            <div className="turn-bg" ref={turnBgRef}></div>
             <div className="top">
                 <div className="info">
                     <p className="battle-member">{opponent.name}</p>

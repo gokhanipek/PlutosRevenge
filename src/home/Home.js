@@ -13,7 +13,7 @@ const Home = () => {
     }, [])
 
     const onClickHandler = () => {
-        history.push('./fullview');
+        history.push('../fullview');
     }
     return (
         <div className="home-wrapper">

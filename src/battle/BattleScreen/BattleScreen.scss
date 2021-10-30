@@ -4,7 +4,7 @@
     bottom: -100%;
     width: 100%;
     height: 150px;
-    background:white;
+    background: transparent;
     z-index: 10;
     transition: 0.7s;
     display: flex;
@@ -12,6 +12,20 @@
     align-items: center;
     font-size: 24px;
     font-weight: bold;
+    z-index: 10;
+    &.visible {
+        bottom: 0%;
+    }
+}
+.turn-bg {
+    background: white;
+    position: absolute;
+    left: 0%;
+    bottom: -100%;
+    width: 100%;
+    height: 150px;
+    z-index: 9;
+    transition: 0.3s;
     &.visible {
         bottom: 0%;
     }
