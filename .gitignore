@@ -21,3 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+# supabase (schema / seed / setup SQL — keep out of public repo)
+supabase/
+*.sql
