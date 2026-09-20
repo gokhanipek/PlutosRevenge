@@ -1,4 +1,4 @@
-import { SET_AWARD, defaultAttackAwards, SET_AVAILABLE_ATTACKS } from "./constants";
+import { SET_AWARD, defaultAttackAwards, SET_AVAILABLE_ATTACKS, START_GAME, RESTORE_SESSION } from "./constants";
 
 const initialState = {
     awards: [],
@@ -8,6 +8,18 @@ const initialState = {
 
 const awardsReducer = (state = initialState, action ) => {
   switch (action.type) {
+    // A new run starts with no awards collected and the full attack pool. This
+    // used to leak across runs, since only the planets slice reset.
+    case START_GAME:
+      return {
+        ...initialState
+      }
+    // Adopting a run recovered from the backend.
+    case RESTORE_SESSION:
+      return {
+        ...initialState,
+        ...(action.payload.awards || {})
+      }
     case SET_AWARD:
       return {
         ...state,

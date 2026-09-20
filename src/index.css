@@ -1,41 +1,415 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-html, body {
+@layer base {
+  html,
+  body {
     margin: 0;
     height: 100%;
-    overflow: hidden;
-    background: #222;
-}
+    background: theme('colors.void');
+  }
 
-#root {
+  body {
+    @apply font-sans text-canvas text-chalk;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display tracking-wide text-chalk;
+  }
+
+  p {
+    @apply leading-relaxed;
+  }
+
+  /* Thin, translucent scrollbars: 0.4 opacity at rest, full opacity while
+     hovered or dragged. Firefox gets the thin width and the resting colour but
+     cannot ramp on hover. */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.4) transparent;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover,
+  ::-webkit-scrollbar-thumb:active {
+    background-color: rgba(255, 255, 255, 1);
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  /* Nothing at document level suppresses overflow: the canvas frame below is
+     laid out at its *scaled* size, so it can never be wider than the viewport. */
+  #root {
     display: flex;
     width: 100%;
-    /* Use dynamic viewport height where supported so mobile browser chrome
-       (address bar) doesn't cause the game to be clipped; fall back to vh. */
     height: 100vh;
     height: 100dvh;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+  }
 }
 
-/* The game is authored at a fixed 800x500 (see App.scss). Scale it down (or
-   up) to fit whatever viewport / iframe it's embedded in, preserving the
-   aspect ratio. --app-scale is set from JS in index.js on load & resize. */
-#root .app-wrapper {
-    transform: scale(var(--app-scale, 1));
-    transform-origin: center center;
+@layer components {
+  /* The game is authored against a fixed 800x500 canvas. `.app-frame` occupies
+     the *scaled* footprint in layout while `.app-wrapper` keeps its authored
+     dimensions and is transformed down into it from the top-left corner.
+     Without the frame, the unscaled 800x500 layout box would overflow small
+     viewports and force scrollbars. --app-scale is set from main.jsx. */
+  .app-frame {
     flex: none;
+    width: calc(800px * var(--app-scale, 1));
+    height: calc(500px * var(--app-scale, 1));
+  }
+
+  .app-wrapper {
+    position: relative;
+    width: 800px;
+    height: 500px;
+    overflow: hidden;
+    background: theme('colors.void');
+    transform: scale(var(--app-scale, 1));
+    transform-origin: top left;
+  }
+
+  .app-wrapper .App {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  /* Rotating starfield behind every screen. Sized to the canvas diagonal and
+     centred, so the field stays populated as it turns. */
+  .star-field {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: var(--field-size, 944px);
+    height: var(--field-size, 944px);
+    margin-left: calc(var(--field-size, 944px) / -2);
+    margin-top: calc(var(--field-size, 944px) / -2);
+    animation: starfield-drift 200s linear infinite;
+    pointer-events: none;
+  }
+
+  .star {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    border-radius: 9999px;
+    background: #fff;
+    filter: brightness(5);
+    animation-name: star-flash;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  /* A celestial body that reads as a sphere.
+     Driven by two custom properties so one class covers every planet:
+       --planet-size    : diameter (also the font-size, so the em-based
+                          lighting in shadow-sphere scales with the body)
+       --planet-texture : url() of the surface texture
+     The texture is never warped; volume comes entirely from the inset shadow
+     stack plus the highlight/terminator overlay below. Light comes from the
+     left, where the sun sits on the map. */
+  .planet {
+    position: relative;
+    width: var(--planet-size);
+    height: var(--planet-size);
+    font-size: var(--planet-size);
+    border-radius: 9999px;
+    background-image: var(--planet-texture);
+    background-size: cover;
+    box-shadow: theme('boxShadow.sphere');
+    animation: planet-pan 4s linear infinite;
+  }
+
+  .planet::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background:
+      radial-gradient(
+        circle at 26% 28%,
+        rgba(255, 255, 255, 0.38) 0%,
+        rgba(255, 255, 255, 0.12) 16%,
+        rgba(255, 255, 255, 0) 44%
+      ),
+      radial-gradient(
+        circle at 82% 72%,
+        rgba(0, 0, 0, 0.6) 0%,
+        rgba(0, 0, 0, 0.22) 38%,
+        rgba(0, 0, 0, 0) 72%
+      );
+  }
+
+  /* Circular planet portrait. The image fills the frame by height and keeps its
+     natural aspect ratio (width: auto), with the excess clipped by the circle;
+     the overlay adds the same sphere lighting the map bodies use. */
+  .planet-portrait {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 11rem;
+    height: 11rem;
+    font-size: 11rem;
+    flex: none;
+    border-radius: 9999px;
+    overflow: hidden;
+    background: theme('colors.abyss');
+  }
+
+  .planet-portrait > img {
+    height: 100%;
+    width: auto;
+    max-width: none;
+    flex: none;
+  }
+
+  .planet-portrait::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    box-shadow: theme('boxShadow.sphere');
+    background:
+      radial-gradient(
+        circle at 26% 28%,
+        rgba(255, 255, 255, 0.28) 0%,
+        rgba(255, 255, 255, 0.08) 18%,
+        rgba(255, 255, 255, 0) 46%
+      ),
+      radial-gradient(
+        circle at 82% 72%,
+        rgba(0, 0, 0, 0.55) 0%,
+        rgba(0, 0, 0, 0.2) 40%,
+        rgba(0, 0, 0, 0) 74%
+      );
+  }
+
+  /* The sun emits rather than reflects: no terminator, just a corona. */
+  .sun-body {
+    position: relative;
+    width: var(--planet-size);
+    height: var(--planet-size);
+    border-radius: 9999px;
+    background: radial-gradient(circle at 50% 50%, #fff3d6 0%, #ffb347 45%, #ff5722 100%);
+    box-shadow: theme('boxShadow.sphere-sun');
+  }
+
+  /* --- Battle screen moving parts ---
+     These stay as classes because the battle screen toggles them imperatively
+     with classList, and because their timings are load-bearing for the fight
+     choreography. */
+
+  .turn-banner {
+    position: absolute;
+    left: 0;
+    bottom: -100%;
+    z-index: 10;
+    display: flex;
+    width: 100%;
+    height: 150px;
+    align-items: center;
+    justify-content: center;
+    transition: bottom 0.7s;
+  }
+
+  .turn-banner.visible {
+    bottom: 0;
+  }
+
+  .turn-flash {
+    position: absolute;
+    left: 0;
+    bottom: -100%;
+    z-index: 9;
+    width: 100%;
+    height: 150px;
+    background: #fff;
+    transition: bottom 0.3s;
+  }
+
+  .turn-flash.visible {
+    bottom: 0;
+  }
+
+  /* Slide-in result card, shared by the battle screen and the wheel. */
+  .overlay-card {
+    position: absolute;
+    left: -100%;
+    top: 150px;
+    z-index: 999;
+    display: flex;
+    width: 100%;
+    height: 200px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0 2rem;
+    transition: left 0.4s;
+  }
+
+  .overlay-card.visible {
+    left: 0;
+  }
+
+  .combatant {
+    position: absolute;
+    z-index: 2;
+    overflow: hidden;
+    border-radius: 9999px;
+    max-width: none;
+    transition: 1s cubic-bezier(1, -0.2, 0.11, 1.23);
+  }
+
+  .combatant-opponent {
+    right: 0;
+    top: -50px;
+    width: 400px;
+    height: 400px;
+  }
+
+  .combatant-opponent.fainted {
+    top: 500px;
+  }
+
+  .combatant-pluto {
+    left: 160px;
+    bottom: 0;
+    width: 40px;
+    height: 40px;
+  }
+
+  .combatant-pluto.fainted {
+    bottom: -200px;
+  }
+
+  .body-shadow {
+    position: absolute;
+    z-index: 1;
+    border-radius: 100%;
+    background: #14141c;
+    filter: blur(6px);
+    transform: rotate3d(1, 0, 0, 65deg);
+  }
+
+  .hp-track {
+    position: relative;
+    height: 8px;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.16);
+  }
+
+  .hp-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: linear-gradient(90deg, theme('colors.ice'), theme('colors.plasma'));
+  }
+
+  /* One button treatment for the whole game. */
+  .btn {
+    @apply inline-flex cursor-pointer items-center justify-center rounded-md border border-edge
+      bg-panel px-4 py-2 font-display text-canvas-xs uppercase tracking-widest text-chalk
+      transition-colors duration-150;
+  }
+
+  .btn:hover:not(:disabled) {
+    @apply border-ice/70 bg-edge text-white;
+  }
+
+  .btn:focus-visible {
+    @apply outline-none ring-2 ring-ice ring-offset-2 ring-offset-void;
+  }
+
+  .btn:disabled {
+    @apply cursor-not-allowed border-edge/40 bg-panel/50 text-muted opacity-60;
+  }
+
+  .btn-primary {
+    @apply border-ice/60 bg-ice/15 text-ice;
+  }
+
+  .btn-primary:hover:not(:disabled) {
+    @apply border-ice bg-ice/25 text-white;
+  }
+
+  .btn-lg {
+    @apply px-7 py-3 text-canvas-sm;
+  }
+
+  /* Vertical-only scrolling. There is deliberately no overflow-x rule here:
+     horizontal overflow is prevented by constraining content (min-width: 0 on
+     flex children, wrapping prose), not by suppressing an axis. */
+  .scroll-y {
+    overflow-y: auto;
+    min-width: 0;
+    overscroll-behavior: contain;
+  }
+
+  /* Prose that must never widen its container. */
+  .prose-constrained {
+    max-width: 62ch;
+    overflow-wrap: anywhere;
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Kept out of @layer so the keyframes are never purged along with a layer they
+   are only referenced from. */
+
+/* Surface texture drift. */
+@keyframes planet-pan {
+  0% {
+    background-position: -100%;
+  }
+  100% {
+    background-position: 100%;
+  }
+}
+
+@keyframes star-flash {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes starfield-drift {
+  to {
+    transform: rotate(360deg);
+  }
 }
