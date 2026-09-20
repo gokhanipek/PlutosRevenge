@@ -7,12 +7,32 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html, body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+    background: #222;
+}
+
 #root {
     display: flex;
     width: 100%;
+    /* Use dynamic viewport height where supported so mobile browser chrome
+       (address bar) doesn't cause the game to be clipped; fall back to vh. */
     height: 100vh;
+    height: 100dvh;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+}
+
+/* The game is authored at a fixed 800x500 (see App.scss). Scale it down (or
+   up) to fit whatever viewport / iframe it's embedded in, preserving the
+   aspect ratio. --app-scale is set from JS in index.js on load & resize. */
+#root .app-wrapper {
+    transform: scale(var(--app-scale, 1));
+    transform-origin: center center;
+    flex: none;
 }
 
 code {
