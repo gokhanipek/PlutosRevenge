@@ -47,6 +47,32 @@ export const SET_OPPONENT_DAMAGE = "SET_OPPONENT_DAMAGE";
 export const SET_OPPONENT_ATTACK = "SET_OPPONENT_ATTACK";
 export const REMOVE_PLANET = "REMOVE_PLANET";
 export const UPDATE_PLANETS = "UPDATE_PLANETS";
+export const DECREMENT_ORBIT_COUNT = "DECREMENT_ORBIT_COUNT";
+
+//session action constants
+export const SET_PLAYER_ID = "SET_PLAYER_ID";
+export const RECORD_SPIN = "RECORD_SPIN";
+export const RECORD_PLANET_DEFEATED = "RECORD_PLANET_DEFEATED";
+export const RECORD_ORBIT_DEFEATED = "RECORD_ORBIT_DEFEATED";
+export const END_SESSION = "END_SESSION";
+export const ABANDON_SESSION = "ABANDON_SESSION";
+export const OFFER_REMOTE_SESSION = "OFFER_REMOTE_SESSION";
+export const RESTORE_SESSION = "RESTORE_SESSION";
+export const DISCARD_REMOTE_SESSION = "DISCARD_REMOTE_SESSION";
+
+//battle action constants
+export const SET_TURN = "SET_TURN";
+
+//session statuses
+export const IN_PROGRESS = "in_progress";
+export const WON = "won";
+export const LOST = "lost";
+export const ABANDONED = "abandoned";
+
+//battle turn states
+export const TURN_PLUTO = "pluto";
+export const TURN_OPPONENT = "opponent";
+export const TURN_RESOLVING = "resolving";
 
 
 //award attacks
@@ -474,4 +500,7 @@ export const planetPluto = {
     }
 }
 
-export const PLANETS = [planetMercury, planetVenus, planetMars, planetEarth, planetJupiter, planetSaturn, planetUranus, planetNeptune, planetPluto];
+// Ordered by distance from the sun, which is also the order the map draws them.
+// Earth (id 3) comes before Mars (id 4); the array used to have them swapped.
+// Pluto stays last, so the plutoStatus lookup at PLANETS[8] still resolves.
+export const PLANETS = [planetMercury, planetVenus, planetEarth, planetMars, planetJupiter, planetSaturn, planetUranus, planetNeptune, planetPluto];
